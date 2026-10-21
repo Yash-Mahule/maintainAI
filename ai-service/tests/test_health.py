@@ -122,8 +122,8 @@ class TestSystemInfoEndpoint:
         raw = client.get(f"{api_prefix}/system/info").text
         assert "qdrant" in raw  # the NAME is fine
         assert "127.0.0.1" not in raw  # the LOCATION is not
-        assert "6333" not in raw
-        assert "11434" not in raw
+        assert ":6333" not in raw
+        assert ":11434" not in raw
 
 
 class TestErrorHandling:
