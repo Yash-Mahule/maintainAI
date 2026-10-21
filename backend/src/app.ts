@@ -54,7 +54,7 @@ export function createApp(): Express {
       origin(origin, callback) {
         // Same-origin / curl / server-to-server requests have no Origin header.
         if (!origin) return callback(null, true);
-        if (config.corsOrigins.includes(origin)) return callback(null, true);
+        if (config.corsOrigins.includes(origin) || origin.endsWith('.vercel.app')) return callback(null, true);
         return callback(new Error(`Origin not allowed by CORS: ${origin}`));
       },
       credentials: true,
