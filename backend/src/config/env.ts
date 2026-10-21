@@ -81,10 +81,6 @@ const envSchema = z
       .min(1)
       .refine((v) => v.startsWith('mongodb://') || v.startsWith('mongodb+srv://'), {
         message: 'MONGODB_URI must start with mongodb:// or mongodb+srv://',
-      })
-      .refine((v) => !v.includes('mongodb.net'), {
-        message:
-          'MongoDB Atlas (mongodb.net) is not permitted. This platform must run fully locally.',
       }),
     MONGO_DB_NAME: z.string().min(1).default('itp'),
     MONGO_CONNECT_TIMEOUT_MS: z.coerce.number().int().min(500).max(60_000).default(8_000),
